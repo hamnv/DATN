@@ -1,0 +1,155 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+  list-style: none;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+body {
+  background-color: #f1f9f9;
+
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: #0280be;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.sidebar header {
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  line-height: 70px;
+  background: #044e74;
+  user-select: none;
+}
+.sidebar ul a {
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px black;
+  transition: 0.4s;
+  text-decoration: none;
+}
+ul li:hover a {
+  padding-left: 50px;
+  background-color: teal;
+}
+.liactive {
+  background-color: rgb(21, 107, 165);
+}
+
+.sidebar ul a i {
+  margin-right: 16px;
+}
+.logout {
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border-radius: 25px;
+  border: 1px solid;
+  padding: 5px 3px 5px 3px;
+  margin: 120px 50px 0px 50px;
+}
+.logout a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+.logout:hover {
+  background-color: rgb(38, 98, 189);
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+}
+.main {
+  position: fixed;
+  margin-left: 250px;
+  background-color: #e7f0f0;
+  border: 1px solid;
+  box-sizing: border-box;
+  box-shadow: antiquewhite;
+  height: 100%;
+  padding-left: 2px;
+  width: 100%;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* The Close Button */
+.close {
+  margin-top: 20px;
+  margin-right: 10px;
+  color: #aaa;
+  float: right;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/** trang chu */
+.headerbar {
+  z-index: 1;
+  background: #076c9e;
+  height: 150px;
+  width: 100%;
+  position: absolute;
+  text-decoration: none;
+  color: white;
+  font-size: 22px;
+}
+.headerbar img{
+  margin: 20px 70% 1px 10px;
+}
+.login{
+  position: relative;
+  float: right;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 50px;
+  margin-right: 20px;
+}
+.login a{
+  color: white;
+  text-decoration: none;
+}
+.login a:hover{
+  color: rgb(235, 181, 82);
+  text-decoration: none;
+}
+.login-form{
+  position: absolute;
+  text-align: left;
+  background: #fdffff;
+  height: 50%px;
+  width: 30%;
+  margin: 15% 15% 10px 35%;
+  padding-left: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding-left: 25px;
+}
