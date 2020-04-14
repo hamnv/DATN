@@ -1,10 +1,11 @@
 <?php include'header.php';
 if(!isset($_SESSION['user']))
-header("Location: index2.php");
+header("Location: welcome.php");
 ?>
 
 <head>
     <title> TRANG CHỦ</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css"> 
 </head>
 <body>
 <div class="sidebar">
@@ -40,10 +41,9 @@ header("Location: index2.php");
 
 
 <div class="main">
-    dfdsfgfgfgdfdsfsdfddsfjdsjfhdsjfhjd hjkh jdskhfjkdshfjdshfjkdf <br>fhdsjfhjd hjkh jdskhfjkdshfjdshfjkdf
-    <br>fhdsjfhjd hjkh jdskhfjkdshfjdshfjkdf <br>fhdsjfhjd hjkh jdskhfjkdshfjdshfjkdf <br>fhdsjfhjd hjkh
-    jdskhfjkdshfjdshfjkdf <br>fhdsjfhjd hjkh jdskhfjkdshfjdshfjkdf <br>fhdsjfhjd hjkh jdskhfjkdshfjdshfjkdf <br>
-
+    <div class="alert alert-info">
+    <strong>Thông tin: </strong> Bạn mới tham gia hệ thống, hãy làm bài test <a href="test.php" class="alert-link">tại đây</a> để chúng tôi gợi ý các bài học cho bạn.
+  </div>
 </div>
 
 

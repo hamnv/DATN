@@ -1,134 +1,167 @@
-<?php include'header.php'; ?>
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Tutorial-22</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript"
-src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js">
-</script>
-<link href="style.css" rel="stylesheet" type="text/css" media="screen">
-<script type="text/javascript" src="script.js"></script>
-</head>
-<body>
-<div class="signin-form">
-    <div class="container">
-        <form class="form-signin" method="post" id="register-form">
-            <h2 class="form-signin-heading">Sign Up</h2><hr />
-            <div id="error">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email address" name="user_email" id="user_email" />
-                <span id="check-e"></span>
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" name="password" id="password" />
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Retype Password" name="cpassword" id="cpassword" />
-            </div>
-            <hr />
-                <div class="form-group">
-                <button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
-                	<span class="glyphicon glyphicon-log-in"></span>   Create Account
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-<script> 
-$('document').ready(function()
-{
-    /* validation */
-    $("#register-form").validate({
-        rules:
-        {
-            password: {
-                required: true,
-                minlength: 6,
-            },
-            cpassword: {
-                required: true,
-                equalTo: '#password'
-            },
-            user_email: {
-                required: true,
-                email: true
-            },
-        },
-        messages:
-        {
-            password:{
-                required: "Xin hãy nhập mật khẩu",
-                minlength: "Mật khẩu tối thiểu 6 ký tự"
-            },
-            user_email: "Xin hãy nhập email hợp lệ",
-            cpassword:{
-                required: "Xin hãy nhập lại mật khẩu",
-                equalTo: "Mật khẩu không khớp !"
+<?php
+session_start();
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["user"])){
+    header("location: index.php");
+    exit;
+}
+// Include config file
+require_once "config/config.php";
+ 
+// Define variables and initialize with empty values
+$user_email = $password = $confirm_password = "";
+$user_email_err = $password_err = $confirm_password_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Validate user_email
+    if(empty(trim($_POST["user_email"]))){
+        $user_email_err = "Xin hãy nhập email.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM user WHERE user_email = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_user_email);
+            
+            // Set parameters
+            $param_user_email = trim($_POST["user_email"]);
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $user_email_err = "Email đã tồn ại.";
+                } else{
+                    $user_email = trim($_POST["user_email"]);
+                }
+            } else{
+                echo "Có lỗi xảy ra xin thử lại sau.";
             }
-        },
-        submitHandler: submitForm
-    });
-    /* validation */
 
-    /* form submit */
-    function submitForm()
-    {
-        var data = $("#register-form").serialize();
-
-        $.ajax({
-
-            type : 'POST',
-            url  : 'register-process.php',
-            data : data,
-            beforeSend: function()
-            {
-                $("#error").fadeOut();
-                $("#btn-submit").html('<span class="glyphicon glyphicon-transfer"></span>   sending ...');
-            },
-            success :  function(data)
-            {
-                if(data==1){
-
-                    $("#error").fadeIn(1000, function(){
-
-
-                        $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> Email đã tồn tại !</div>');
-
-                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span>   Create Account');
-
-                    });
-
-                }
-                else if(data=="registered")
-                {
-
-                    $("#btn-submit").html('Signing Up');
-                    setTimeout('$(".form-signin").fadeOut(500, function(){ $(".signin-form").load("../index.php"); }); ',5000);
-
-                }
-                else{
-
-                    $("#error").fadeIn(1000, function(){
-
-                        $("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span>   '+data+' !</div>');
-
-                        $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span>   Create Account');
-
-                    });
-
-                }
-            }
-        });
-        return false;
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
     }
-    /* form submit */
+    
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Xin hãy nhập mật khẩu.";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Mật khẩu ít nhất 6 ký tự.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Xác nhận mật khẩu.";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Mật khẩu không trùng khớp.";
+        }
+    }
+    
+    // Check input errors before inserting in database
+    if(empty($user_email_err) && empty($password_err) && empty($confirm_password_err)){
+        
+        // Prepare an insert statement
+        $sql = "INSERT INTO user (user_email, user_password) VALUES (?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_user_email, $param_password);
+            
+            // Set parameters
+            $param_user_email = $user_email;
+            $param_password = md5($password); // Creates a password hash
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                $_SESSION['user'] = $user_email;
+                header("location: login.php");
 
-});
-</script>
-<script src="js/bootstrap.min.js"></script>
+            } else{
+                echo "Có lỗi xảy ra.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Close connection
+    mysqli_close($link);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Hệ thống đào tạo trực tuyến môn Trí tuệ nhân tạo
+    </title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style type="text/css">
+    body {
+        font: 14px sans-serif;
+    }
+
+    .wrapper {
+        position: absolute;
+        width: 350px;
+        padding: 20px;
+        margin-top: 12%;
+        padding-top: 15px;
+        left: 40%;
+        border: 1px solid #4d79ff;
+        background-color: white;
+        box-shadow: 10px 10px 5px #aaaaaa;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="headerbar">
+    <a href="index.php"><img src="assets/Logo.png" alt="Logo" /> </a>
+    </div>
+    <div class="register">
+        <div class="wrapper">
+            <h2>Đăng ký tài khoản</h2>
+            <p>Xin mời nhập thông tin.</p>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="form-group <?php echo (!empty($user_email_err)) ? 'has-error' : ''; ?>">
+                    <label>Email</label>
+                    <input type="text" name="user_email" class="form-control" value="<?php echo $user_email; ?>">
+                    <span class="help-block"><?php echo $user_email_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <label>Mật khẩu</label>
+                    <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                    <span class="help-block"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <label>Xác nhận mật khẩu</label>
+                    <input type="password" name="confirm_password" class="form-control"
+                        value="<?php echo $confirm_password; ?>">
+                    <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Xác nhận">
+                    <input type="reset" class="btn btn-default" value="Đặt lại">
+                </div>
+                <p>Đã có tài khoản? <a href="login.php">Đăng nhập</a>.</p>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($user_email_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT user_id, user_email, user_password FROM user WHERE user_email = ?";
+        $sql = "SELECT id, user_email, user_password FROM user WHERE user_email = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -73,18 +73,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             echo "<script>
                             alert('Mật khẩu của bạn không chính xác');
                        </script>";
+                            
                         }
                     }
                 } else{
                     // Display an error message if user_email doesn't exist
                     $user_email_err = "Email không tồn tại!!";
                     echo "<script> alert('Email không tồn tại trên hệ thống!');</script>";
+                   
                 }
             } else{
-                echo "Có lỗi xảy ra, xin vui lòng thử lại sau";
                 echo "<script>
                             alert('Có lỗi xảy ra, xin vui lòng thử lại sau');
                        </script>";
+                       
             }
 
             // Close statement
@@ -118,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="headerbar">
         <img src="assets/Logo.png" alt="Logo" />
         <div class="login">
-            <a href=""> <b> Đăng ký</b></a> |
+            <a href="register.php"> <b> Đăng ký</b></a> |
             <a href="#" id="myBtn" > <b> Đăng Nhập </b></a>
         </div>
     </div>
