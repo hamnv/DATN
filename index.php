@@ -12,7 +12,7 @@ header("Location: welcome.php");
     <header>
 	 <?php 
 	 if(isset($_SESSION['user']))
-			echo "<h1>".$_SESSION['user']."</h1>"; 
+			echo $_SESSION['user']; 
 	 else
 			echo "Hello !"; ?> 
 	</header>
@@ -44,10 +44,13 @@ header("Location: welcome.php");
     <div class="alert alert-info">
     <strong>Thông tin: </strong> Bạn mới tham gia hệ thống, hãy làm bài test <a href="test.php" class="alert-link">tại đây</a> để chúng tôi gợi ý các bài học cho bạn.
   </div>
+    <input type="hidden" id="progessvalue" value="<?php $a=62; print $a; ?>">
+  <div class="wrap_progess"> <div id="progessbar"> <p id="progess_info"> </p></div> </div>
+
 </div>
 
 
-
+<script src="assets/js/progess.js"></script>
 </body>
 
 </html>

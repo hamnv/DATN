@@ -19,8 +19,8 @@ error_reporting(0);
 //
 // #########################################
 //      CONFIGURATION
-$title = "dfsfd";
-$address = "index.html";
+$title = "bài test đầu vào";
+$address = "test.php";
 $randomizequestions ="yes"; // set up as "no" to show questions without randomization
 //    END CONFIGURATION
 // #########################################
@@ -111,18 +111,21 @@ function Goahead (number){
                 }
         }
         if (number==<?php print $a[$randval2][6] ; ?>){
-                document.question.response.value="Correct"
+                document.question.response.value="Chính xác";
+                document.getElementById("question").style.color = "blue";
         }else{
-                document.question.response.value="Incorrect"
+                document.question.response.value="Không chính xác";
+                document.getElementById("question").style.color = "red";
         }
 }
 // -->
 </SCRIPT>
-
+<link rel="stylesheet" href="assets/css/style.css">
 </HEAD>
 <BODY BGCOLOR=FFFFFF>
 
 <CENTER>
+<div class="wrap"> 
 <H1><?php print "$title"; ?></H1>
 <TABLE BORDER=0 CELLSPACING=5 WIDTH=500>
 
@@ -131,8 +134,8 @@ function Goahead (number){
 <TR><TD ALIGN=RIGHT>
 <FORM METHOD=POST NAME="percentaje" ACTION="<?php print $URL; ?>">
 
-<BR>Percentaje of correct responses: <?php print $percentaje; ?> %
-<BR><input type=submit value="Next >>">
+<BR>Tỉ lệ trả lời đúng: <?php print $percentaje; ?> %
+<BR><input type=submit value="Tiếp theo >>">
 <input type=hidden name=response value=0>
 <input type=hidden name=question value=<?php print $question; ?>>
 <input type=hidden name=ok value=<?php print $ok; ?>>
@@ -154,7 +157,7 @@ function Goahead (number){
 <BR>     <INPUT TYPE=radio NAME="option" VALUE="4"  onClick=" Goahead (4);"><?php print $a[$randval2][4] ; } ?>
 <?php if ($a[$randval2][5]!=""){ ?>
 <BR>     <INPUT TYPE=radio NAME="option" VALUE="5"  onClick=" Goahead (5);"><?php print $a[$randval2][5] ; } ?>
-<BR>     <input type=text name=response size=8>
+<BR>     <input id="question" type=text name=response size=8 disabled>
 
 
 </FORM>
@@ -171,7 +174,7 @@ The Quiz has finished
 
 </TD></TR>
 </TABLE>
-
+</div>
 </CENTER>
 </BODY>
 </HTML>

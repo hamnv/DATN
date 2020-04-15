@@ -5,7 +5,7 @@
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 body {
-  background-color: #f1f9f9;
+  background-color: #fffefe;
 
 }
 
@@ -69,12 +69,19 @@ ul li:hover a {
 .logout:hover {
   background-color: rgb(38, 98, 189);
   cursor: pointer;
-  -webkit-transform: scale(1.1);
+  text-decoration: none;
+  color: #e7f0f0;
+}
+.logout a:hover {
+  background-color: rgb(38, 98, 189);
+  cursor: pointer;
+  text-decoration: none;
+  color: #e7f0f0;
 }
 .main {
   position: fixed;
   margin-left: 250px;
-  background-color: #e7f0f0;
+  background-color: #ffffff;
   border: 1px solid;
   box-sizing: border-box;
   box-shadow: antiquewhite;
@@ -153,4 +160,58 @@ ul li:hover a {
   border-radius: 20px;
   padding-left: 25px;
 }
-
+/** Phan test dau vao **/
+.wrap{
+  height: 100%;
+  width: 50%;
+  background: #e8f3f3;
+  border: rgb(218, 207, 207) solid;
+  border-width: 0.5px;
+  margin-top: 10px;
+  left: 222px;
+}
+.wrap h1{
+  color: #0280be;
+}
+.wrap input[type=submit]{
+  background: #076c9e;
+  color: #e7f0f0;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 2px 0px 2px 0px;
+}
+.wrap input[type=submit]:hover{
+  cursor: pointer;
+  background-color: #0280be;
+}
+.wrap input[type=text]{
+  background-color: rgb(221, 238, 238);
+  padding: 5px 5px 5px 5px;
+  width: 150px;
+  border: rgb(222, 228, 228) solid;
+  border-width: 0.5px;
+  font-size: 14px;
+  color: #ff0000;
+}
+/** progress bar*/
+.wrap_progess{
+  position: absolute;
+  background-color: rgb(241, 241, 241);
+  height: 35px;
+  width: 80%;
+  border: none;
+  margin: 10px 50px 10px 10px;
+}
+#progessbar{
+  position: relative;
+  background-color: rgb(241, 241, 241);
+  font-weight: bold;
+  height: 100%;
+  padding-top: 5px;
+  padding-left: 15px;
+  color: white;
+  font-weight: bold;
+}

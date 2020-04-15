@@ -20,14 +20,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if user_email is empty
     if(empty(trim($_POST["user_email"]))){
-        $user_email_err = "Please enter user_email.";
+        $user_email_err = "Xin hãy nhập email.";
     } else{
         $user_email = trim($_POST["user_email"]);
     }
     
     // Check if password is empty
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
+        $password_err = "Xin hãy nhập mật khẩu.";
     } else{
         $password = $_POST["password"];
     }
