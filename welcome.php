@@ -121,71 +121,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <img src="assets/Logo.png" alt="Logo" />
         <div class="login">
             <a href="register.php"> <b> Đăng ký</b></a> |
-            <a href="#" id="myBtn" > <b> Đăng Nhập </b></a>
+            <a href="login.php"> <b> Đăng Nhập </b></a>
         </div>
     </div>
-    <!-- Trigger/Open The Modal -->
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="login-form">
-            <span class="close"> &times; </span>
-            <div class="wrapper">
-                <h2>Đăng nhập</h2>
-                <p>Xin hãy điền vào thông tin.</p>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <div class="form-group <?php echo (!empty($user_email_err)) ? 'has-error' : ''; ?>">
-                        <label>Email</label>
-                        <input type="text" name="user_email" class="form-control" value="<?php echo $user_email; ?>">
-                        <span class="help-block"><?php echo $user_email_err; ?></span>
-                    </div>
-                    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control">
-                        <span class="help-block"><?php echo $password_err; ?></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Login">
-                    </div>
-                    <p>Quên mật khẩu? <a href="forgot.php">Reset</a>.</p>
-                </form>
-            </div>
-            <!-- End modal partial -->
+    <div class="main-wrap">
+        <h3> Các chủ đề môn học </h3>
+        <div class="main-wrap-topic">
+            <div class="topic-item"> <img src="assets/Logo.png" /> <span> Tác tử và môi trường </span> </div>
         </div>
-
     </div>
 
-
-    <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-        modal.modal({'backdrop': 'static'});
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    /*window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }*/
-    </script>
-    <script src='assets/js/TweenMax.min.js'></script>
-    <script src="assets/js/loginscript.js"></script>
 </body>

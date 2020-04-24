@@ -27,20 +27,18 @@ body {
 }
 .sidebar ul a {
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-  display: block;
-  height: 100%;
-  width: 100%;
+  display: block ;
   line-height: 65px;
   font-size: 20px;
-  color: white;
+  color: white !important;
   padding-left: 40px;
   box-sizing: border-box;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px black;
   transition: 0.4s;
-  text-decoration: none;
+  text-decoration: none !important;
 }
-ul li:hover a {
+.sidebar ul li:hover a {
   padding-left: 50px;
   background-color: teal;
 }
@@ -148,6 +146,49 @@ ul li:hover a {
   color: rgb(235, 181, 82);
   text-decoration: none;
 }
+.main-wrap{
+  color: #2e1919;
+  position: absolute;
+  margin-top: 160px;
+  width: 100%;
+}
+.main-wrap h3{
+  text-align: center;
+  font-weight: bold;
+  width: auto;
+}
+.main-wrap-topic{
+  position: relative;
+  height: 300px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.topic-item{
+  position: relative;
+  background-color: #f3f0f0;
+  height: 250px;
+  display: inline-block;
+  width: 300px;
+  text-align: center;
+  margin: 5px 10px 0px 10px;
+  border-radius: 3px;
+}
+.topic-item img{
+  background-color: #ff0000;
+  margin-top: 3px;
+  display: block;
+  text-align: center;
+}
+.topic-item span{
+  position: relative;
+  bottom: -100px;
+  font-weight: bold;
+}
+.topic-item:hover{
+  background-color: rgb(18, 109, 109);
+}
 .login-form{
   position: absolute;
   text-align: left;
@@ -162,7 +203,7 @@ ul li:hover a {
 }
 /** Phan test dau vao **/
 .wrap{
-  height: 100%;
+  height: 98%;
   width: 50%;
   background: #e8f3f3;
   border: rgb(218, 207, 207) solid;
@@ -215,3 +256,19 @@ ul li:hover a {
   color: white;
   font-weight: bold;
 }
+.jumbotron {
+  position: relative !important;
+  margin-left: 252px;
+  padding-left: 5px;
+}
+.panel-title {
+font-weight: bold;
+}
+.list-group-item a, .list-group-item a:hover, .list-group-item:hover{
+  text-decoration: none !important;
+  background: none !important;
+  transition: none !important;
+  transform: none !important;
+  margin: 0px 0px 0px 0px !important;
+}
+
