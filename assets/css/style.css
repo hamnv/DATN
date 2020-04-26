@@ -76,17 +76,6 @@ body {
   text-decoration: none;
   color: #e7f0f0;
 }
-.main {
-  position: fixed;
-  margin-left: 250px;
-  background-color: #ffffff;
-  border: 1px solid;
-  box-sizing: border-box;
-  box-shadow: antiquewhite;
-  height: 100%;
-  padding-left: 2px;
-  width: 100%;
-}
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -237,6 +226,17 @@ body {
   font-size: 14px;
   color: #ff0000;
 }
+/** main **/
+.main {
+  position: relative;
+  margin-left: 250px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  box-shadow: antiquewhite;
+  height: 100%;
+  padding-left: 2px;
+  width: 100%;
+}
 /** progress bar*/
 .wrap_progess{
   position: absolute;
@@ -247,7 +247,7 @@ body {
   margin: 10px 50px 10px 10px;
 }
 #progessbar{
-  position: relative;
+  position: absolute;
   background-color: rgb(241, 241, 241);
   font-weight: bold;
   height: 100%;
@@ -255,6 +255,10 @@ body {
   padding-left: 15px;
   color: white;
   font-weight: bold;
+}
+.dashboard {
+  position: absolute;
+  top: 200px;
 }
 .jumbotron {
   position: relative !important;

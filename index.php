@@ -41,18 +41,14 @@ if (isset($_SESSION['user'])) {
 }
 
 ?>
-
     </div>
-
-
-
+<!-- end side bar---> 
     <div class="main">
         <div class="alert alert-info">
             <strong id="date">Thông tin: </strong> <strong id="realtime"></strong>
         </div>
-        <div class="activity">
-            <span> Cac hoat dong gan day</span>
-        </div>
+        <!-- Tien do hoc tap-->
+        <span style="font-weight: bold; margin-left: 3px; "> Tiến độ học tập:</span>
         <input type="hidden" id="progessvalue" value="<?php $a = 30;
 print $a;?>">
         <div class="wrap_progess">
@@ -60,7 +56,9 @@ print $a;?>">
                 <p id="progess_info"> </p>
             </div>
         </div>
+        <div class="dashboard"> fgfdgd fdgfggffg </div>
     </div>
+
     <script src="assets/js/progess.js"></script>
     <script src="assets/js/dateTime.js"></script>
 </body>
