@@ -27,7 +27,7 @@ if (isset($_SESSION['admin'])) {
         <ul>
             <li> <a href="admin-dashboard.php"><i class="fas fa-home"></i>Trang Chính</a></li>
             <li class="liactive"> <a href="admin-content.php"><i class="fas fa-stream"></i>Quản Lý Nội Dung</a></li>
-            <li> <a href="research.php"><i class="fas fa-user"></i>Quản Lý User</a></li>
+            <li> <a href="admin-user.php"><i class="fas fa-user"></i>Quản Lý User</a></li>
             <li> <a href="research.php"><i class="fas fa-comment"></i>Quản Lý Diễn Đàn</a></li>
             <li> <a href="research.php"><i class="fas fa-question-circle"></i>Quản Lý Câu Hỏi</a></li>
             <?php
@@ -58,18 +58,18 @@ if (isset($_SESSION['admin'])) {
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="adm-content-exe.php" method="POST">
+                            <form action="adm-content-exe.php" method="POST" onsubmit="return validAddLesson();">
                                 <div class="form-group">
                                     <label for="">Tên bài học</label>
-                                    <input type="text" class="form-control" name="lname" id="" aria-describedby="helpId"
+                                    <input type="text" class="form-control" name="lname" id="lname" 
                                         placeholder="">
-                                    <small id="helpId" class="form-text text-muted"></small>
+                                    <small id="lnameHelp" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Link</label>
-                                    <input type="text" class="form-control" name="link" id="" aria-describedby="helpId"
+                                    <input type="text" class="form-control" name="link" id="llink" 
                                         placeholder="">
-                                    <small id="helpId" class="form-text text-muted"></small>
+                                    <small id="llinkHelp" class="form-text text-muted"></small>
                                 </div>
                                 <?php
 $sql = "SELECT * FROM category";

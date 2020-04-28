@@ -27,7 +27,7 @@ if (isset($_SESSION['admin'])) {
         <ul>
             <li class="liactive"> <a href="#"><i class="fas fa-home"></i>Trang Chính</a></li>
             <li> <a href="admin-content.php"><i class="fas fa-stream"></i>Quản Lý Nội Dung</a></li>
-            <li> <a href="research.php"><i class="fas fa-user"></i>Quản Lý User</a></li>
+            <li> <a href="admin-user.php"><i class="fas fa-user"></i>Quản Lý User</a></li>
             <li> <a href="research.php"><i class="fas fa-comment"></i>Quản Lý Diễn Đàn</a></li>
             <li> <a href="research.php"><i class="fas fa-question-circle"></i>Quản Lý Câu Hỏi</a></li>
             <?php

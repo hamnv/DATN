@@ -26,3 +26,23 @@ function validAddCategory() {
     }
     else return true;
 }
+function validAddLesson() {
+    var lname = document.getElementById("lname").value;
+    var llink = document.getElementById("llink").value;
+    if(lname == "" && llink == ""){
+        document.getElementById("lnameHelp").innerHTML = " Không được để trống!";
+        document.getElementById("llinkHelp").innerHTML = " Không được để trống!";
+        return false;
+    }
+     else {
+           if(lname == ""){
+            document.getElementById("lnameHelp").innerHTML = " Không được để trống!";
+            return false;
+        }
+        else if (llink == ""){
+            document.getElementById("llinkHelp").innerHTML = " Không được để trống!";
+            return false;
+        }
+        else return true;
+    }
+}
