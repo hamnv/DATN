@@ -41,13 +41,13 @@ if (isset($_SESSION['user'])) {
 
 ?>
 
-    </div>
+    </div> <!---edn side bar-->
 
 <div class="jumbotron">
 dsf
 </div>
 
-<div class="container">
+<div class="main">
     <!--- TIM MIEM CO BAN --> 
   <h2>Danh mục buổi học</h2>
   <!--pannel group --> 

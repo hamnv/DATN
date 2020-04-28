@@ -31,18 +31,10 @@ if (isset($_SESSION['user'])) {
             <li> <a href="result.php"><i class="fas fa-tasks"></i>Kết quả </a></li>
             <li> <a href="resources.php"><i class="fas fa-download"></i>Tài Nguyên</a></li>
             <li> <a href="bugs.php"><i class="fas fa-bug"></i>Báo lỗi</a></li>
-            <li> <a href="#"></a></li>
+            <li> <a href="logout.php"><i class="fas fa-sign-out-alt"> </i> Đăng Xuất</a></li>
         </ul>
-        <?php
-if (isset($_SESSION['user'])) {
-    echo "<div class=\"logout\"> <a href=\"logout.php\"> <b> Đăng Xuất </b></a></div>";
-} else {
-    echo "<div class=\"logout\"> <a href=\"#\" id=\"myBtn\"> <b> Đăng Nhập </b></a></div>";
-}
-
-?>
     </div>
-<!-- end side bar---> 
+    <!-- end side bar--->
     <div class="main">
         <div class="alert alert-info">
             <strong id="date">Thông tin: </strong> <strong id="realtime"></strong>
@@ -56,11 +48,20 @@ print $a;?>">
                 <p id="progess_info"> </p>
             </div>
         </div>
-        <div class="dashboard"> fgfdgd fdgfggffg </div>
+        <div class="dashboard">
+            <span> Các bài học </span>
+            <button class="btn-lesson"> </button>
+            <button class="btn-lesson"> </button>
+            <button class="btn-lesson"> </button>
+            <button class="btn-lesson"> </button>
+            <button class="btn-lesson"> </button>
+        </div>
     </div>
 
     <script src="assets/js/progess.js"></script>
     <script src="assets/js/dateTime.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
 </body>
 
 </html>

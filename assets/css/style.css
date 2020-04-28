@@ -25,6 +25,9 @@ body {
   background: #044e74;
   user-select: none;
 }
+.sidebar ul{
+  display: inline;
+}
 .sidebar ul a {
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   display: block ;
@@ -48,33 +51,6 @@ body {
 
 .sidebar ul a i {
   margin-right: 16px;
-}
-.logout {
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  border-radius: 25px;
-  border: 1px solid;
-  padding: 5px 3px 5px 3px;
-  margin: 120px 50px 0px 50px;
-}
-.logout a {
-  color: white;
-  font-size: 20px;
-  text-decoration: none;
-}
-.logout:hover {
-  background-color: rgb(38, 98, 189);
-  cursor: pointer;
-  text-decoration: none;
-  color: #e7f0f0;
-}
-.logout a:hover {
-  background-color: rgb(38, 98, 189);
-  cursor: pointer;
-  text-decoration: none;
-  color: #e7f0f0;
 }
 /* The Modal (background) */
 .modal {
@@ -234,7 +210,7 @@ body {
   box-sizing: border-box;
   box-shadow: antiquewhite;
   height: 100%;
-  padding-left: 2px;
+  padding-left: 5px;
   width: 100%;
 }
 /** progress bar*/
@@ -260,6 +236,11 @@ body {
   position: absolute;
   top: 200px;
 }
+
+.btn-lesson{
+display: inline;
+}
+
 .jumbotron {
   position: relative !important;
   margin-left: 252px;
