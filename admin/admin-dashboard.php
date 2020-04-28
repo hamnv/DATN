@@ -1,8 +1,8 @@
-<?php include 'admin_header.php';
+<?php include 'admin-header.php';
 require_once "../config/config.php";
 
 if (!isset($_SESSION['admin'])) {
-    header("Location: admin_login.php");
+    header("Location: admin-login.php");
 }
 
 ?>
@@ -26,7 +26,7 @@ if (isset($_SESSION['admin'])) {
 
         <ul>
             <li class="liactive"> <a href="#"><i class="fas fa-home"></i>Trang Chính</a></li>
-            <li> <a href="lesson.php"><i class="fas fa-stream"></i>Quản Lý Nội Dung</a></li>
+            <li> <a href="admin-content.php"><i class="fas fa-stream"></i>Quản Lý Nội Dung</a></li>
             <li> <a href="research.php"><i class="fas fa-user"></i>Quản Lý User</a></li>
             <li> <a href="research.php"><i class="fas fa-comment"></i>Quản Lý Diễn Đàn</a></li>
             <li> <a href="research.php"><i class="fas fa-question-circle"></i>Quản Lý Câu Hỏi</a></li>
@@ -39,31 +39,11 @@ if (isset($_SESSION['admin']))
 
     <!-- end side bar--->
     <div class="main-dashboard">
-        <script>
-        function kiemtra() {
-            var x = document.forms["add-adm"]["account"].value;
-            var y = document.forms["add-adm"]["password"].value;
-            if (x == "" && y == "") {
-                document.getElementById("notify").innerHTML =
-                    "<p style=\"color:red\">Tài khoản và mật khẩu trống!! </p>";
-                    return false;
-            } else {
-                if (x == "") {
-                    document.getElementById("notify").innerHTML = "<p style=\"color:red\"> Xin hãy điền tài khoản</p>";
-                    return false;
-                } else {
-                    document.getElementById("notify").innerHTML = "<p style=\"color:red\"> Xin hãy điền mật khẩu</p>";
-                    return false;
-                } 
-            }
-
-        }
-        </script>
         <!--- start add admin -->
         <div class="add-adm">
             <p> Thêm Adminstrator</p>
             <p id="notify"></p>
-            <form action="add-adm.php" method="POST" name="add-adm" onsubmit="return kiemtra();">
+            <form action="add-adm.php" method="POST" name="add-adm" onsubmit="return validAddAdmin();">
                 <label for="account">Tài khoản</label>
                 <input type="text" name="account" placeholder="Nhập tài khoản" id="acc" class="input-add-adm"
                     value="" />
@@ -149,6 +129,7 @@ if (isset($_SESSION['admin']))
         </div> <!--- end admin stat -->
     </div>
     <!--- END DASHBOARD -->
+    <script src="../assets/js/validForm.js"></script>
 </body>
 
 </html>

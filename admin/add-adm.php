@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 echo "<script> alert(\"Thêm thành công\");</script>";
-                header("location: admin_dashboard.php");
+                header("location: admin-dashboard.php");
 
             } else{
                 echo "Có lỗi xảy ra.";

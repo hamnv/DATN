@@ -4,7 +4,7 @@ session_start();
  
 // Check if the admin is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION['admin'])){
-    header("location: admin_dashboard.php");
+    header("location: admin-dashboard.php");
     exit;
 }
  
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["admin"] = $admin_account;                            
                             
                             // Redirect admin to welcome page
-                            header("location: admin_dashboard.php");
+                            header("location: admin-dashboard.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "Mật khẩu của bạn không chính xác";
