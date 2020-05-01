@@ -1,8 +1,9 @@
 <?php include 'header.php';
+include 'config/config.php';
 if (!isset($_SESSION['user'])) {
     header("Location: welcome.php");
 }
-
+$user_id = $_SESSION['user_id'];
 ?>
 
 <head>
@@ -16,6 +17,7 @@ if (!isset($_SESSION['user'])) {
             <?php
 if (isset($_SESSION['user'])) {
     echo $_SESSION['user'];
+    echo $_SESSION['user_id'];
 } else {
     echo "Hello !";
 }
@@ -49,19 +51,26 @@ print $a;?>">
             </div>
         </div>
         <div class="dashboard">
-            <span> Các bài học </span>
-            <button class="btn-lesson"> </button>
-            <button class="btn-lesson"> </button>
-            <button class="btn-lesson"> </button>
-            <button class="btn-lesson"> </button>
-            <button class="btn-lesson"> </button>
+        <span> Các bài học đã xem</span><br/>
+        <?php 
+        $sql = "SELECT DISTINCT lesson.title, lesson_progess.lesson_id
+        FROM lesson, lesson_progess 
+        WHERE lesson_progess.lesson_id=lesson.id AND lesson_progess.user_id=$user_id";
+        $result = mysqli_query($link, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<button class=\"btn-lesson col-md-2\">".$row['title']."</button>";
+        ?>
+        <?php }
+        mysqli_close($link); 
+            }?>
         </div>
     </div>
 
     <script src="assets/js/progess.js"></script>
     <script src="assets/js/dateTime.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
 </body>
 
 </html>

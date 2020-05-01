@@ -1,4 +1,5 @@
 <a href="#"> <?php include 'header.php';
+include 'config/config.php';
 if (!isset($_SESSION['user'])) {
     header("Location: welcome.php");
 }
@@ -9,7 +10,7 @@ if (!isset($_SESSION['user'])) {
         <title> Bài giảng</title>
     </head>
 
-    <body onload="startTime()">
+    <body>
         <div class="sidebar">
             <header>
                 <?php
@@ -30,73 +31,47 @@ if (isset($_SESSION['user'])) {
                 <li> <a href="result.php"><i class="fas fa-tasks"></i>Kết quả </a></li>
                 <li> <a href="resources.php"><i class="fas fa-download"></i>Tài Nguyên</a></li>
                 <li> <a href="bugs.php"><i class="fas fa-bug"></i>Báo lỗi</a></li>
-                <li> <a href="#"></a></li>
+                <li> <a href="logout.php"><i class="fas fa-sign-out-alt"> </i> Đăng Xuất</a></li>
             </ul>
-            <?php
-if (isset($_SESSION['user'])) {
-    echo "<div class=\"logout\"> <a href=\"logout.php\"> <b> Đăng Xuất </b></a></div>";
-} else {
-    echo "<div class=\"logout\"> <a href=\"#\" id=\"myBtn\"> <b> Đăng Nhập </b></a></div>";
-}
-
-?>
         </div>
         <!---edn side bar-->
-        <div class="jumbotron">
-            dsf
-        </div>
         <div class="main">
             <!--- TIM MIEM CO BAN -->
             <h2>Danh mục buổi học</h2>
-            <!--pannel group -->
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <span>Tìm kiếm cơ bản</span>
-                        </h4>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#"> Tìm kiếm theo chiều rộng (BFS)</a></li>
-                        <li class="list-group-item"><a href="#"> Tìm<a href="#"> kiếm theo chiều sâu (DFS)</a></li>
-                        <li class="list-group-item"><a href="#"> Tìm<a href="#"> kiếm sâu dần (IDS)</a></li>
-                        <li class="list-group-item"><a href="#"> Tìm<a href="#"> kiếm với chi phí cực tiểu (UCS)</a>
-                        </li>
-                    </ul>
+            <div class="row col-md-10">
+                <div class="table table-striped table-bordered">
+                    <table>
+                        <tr>
+                            <th>STT</th>
+                            <th>Chủ đề</th>
+                            <th>Tên bài học</th>
+                            <th>Link</th>
+                        </tr>
+                        <?php
+$sql2 = "SELECT lesson.id as id, lesson.title as title, lesson.link as link, category.name as name
+FROM lesson
+INNER JOIN category ON lesson.category_id=category.id;";
+$result2 = mysqli_query($link, $sql2);
+if (mysqli_num_rows($result2) > 0) {
+    while ($row = mysqli_fetch_assoc($result2)) {
+        echo "<tr>
+        <td>".$row['id']."</td>
+        <td>".$row['name']."</td>
+        <td>".$row['title']."</td>
+        <td><a href=\"go-lesson.php?id=" .$row['id']. "\">".$row['link']."</a></td>
+    </tr> "; 
+                           ?>
+                        <?php     }
+} else {
+    echo "";
+}
+
+mysqli_close($link);
+?>
+
+                    </table>
                 </div>
             </div>
-            <!---end <a href="#"> panel group -->
-            <!--pannel group -->
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <span>Tìm kiếm với tri thức bổ sung</span>
-                        </h4>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#"> Tìm kiếm A *</a></li>
-                        <li class="list-group-item"><a href="#"> Tìm kiếm có đối thủ</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!---end panel group -->
-            <!--pannel group -->
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <span>Tìm kiếm thoả mãn ràng buộc</span>
-                        </h4>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#"> Tìm kiếm quay lui</a></li>
-                        <li class="list-group-item"><a href="#"> Kiểm tra tiến</a></li>
-                        <li class="list-group-item"><a href="#"> Tìm kiếm cục bộ</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!---end panel group -->
         </div>
         <!---END  TIM MIEM CO BAN -->
     </body>

@@ -205,12 +205,27 @@ body {
 .dashboard {
   position: absolute;
   top: 200px;
+  width: auto;
 }
-
+.dashboard span{
+ font-weight: bold;
+ font-size: 20px;
+}
 .btn-lesson{
 display: inline;
+padding: 5px 7px 5px 7px;
+background-color: rgb(40, 56, 150);
+border: solid #044e74;
+border-width: 0.5px;
+border-radius: 6px;
+margin: 2px 3px 2px 3px;
+font-size: 18px;
+color: #fff;
 }
-
+.btn-lesson:hover{
+  background-color: rgb(57, 99, 190);
+  border-color: #36cccc;
+}
 .jumbotron {
   position: relative !important;
   margin-left: 252px;
@@ -230,3 +245,21 @@ text-decoration: none;
   margin: 0px 0px 0px 0px !important;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #164181;
+  color: white;
+}

@@ -9,6 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="stylesheet" href="../assets/css/all.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
     <script src="../assets/js/ham.js"></script>
