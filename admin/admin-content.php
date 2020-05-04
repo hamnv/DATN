@@ -58,7 +58,7 @@ if (isset($_SESSION['admin'])) {
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="adm-content-exe.php" method="POST" onsubmit="return validAddLesson();">
+                            <form action="adm-content-exe.php" method="POST" onsubmit="return validAddLesson();" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="">Tên bài học</label>
                                     <input type="text" class="form-control" name="lname" id="lname" 
@@ -66,9 +66,8 @@ if (isset($_SESSION['admin'])) {
                                     <small id="lnameHelp" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Link</label>
-                                    <input type="text" class="form-control" name="link" id="llink" 
-                                        placeholder="">
+                                    <label for="">File</label>
+                                    <input type="file" class="form-control" name="zip_file" accept=".zip"/>
                                     <small id="llinkHelp" class="form-text text-muted"></small>
                                 </div>
                                 <?php
@@ -138,18 +137,18 @@ if (mysqli_num_rows($result) > 0) {
                     <th>STT</th>
                     <th>Tên bài học</th>
                     <th>Chủ đề</th>
-                    <th>Link</th>
+                    <th>Ngày tạo</th>
                 </tr>
                 <?php
-$sql2 = "SELECT * FROM lesson";
+$sql2 = "SELECT * FROM lesson INNER JOIN category on category.id=lesson.category_id;";
 $result2 = mysqli_query($link, $sql2);
 if (mysqli_num_rows($result2) > 0) {
     while ($row = mysqli_fetch_assoc($result2)) {
         echo "<tr>
         <td>".$row['id']."</td>
         <td>".$row['title']."</td>
-        <td>".$row['category_id']."</td>
-        <td>".$row['link']."</td>
+        <td>".$row['name']."</td>
+        <td>".$row['created_at']."</td>
     </tr> "; 
                            ?>
                 <?php     }

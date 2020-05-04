@@ -48,7 +48,7 @@ if (isset($_SESSION['user'])) {
                             <th>Link</th>
                         </tr>
                         <?php
-$sql2 = "SELECT lesson.id as id, lesson.title as title, lesson.link as link, category.name as name
+$sql2 = "SELECT lesson.id as id, lesson.title as title, category.name as name
 FROM lesson
 INNER JOIN category ON lesson.category_id=category.id;";
 $result2 = mysqli_query($link, $sql2);
@@ -58,7 +58,7 @@ if (mysqli_num_rows($result2) > 0) {
         <td>".$row['id']."</td>
         <td>".$row['name']."</td>
         <td>".$row['title']."</td>
-        <td><a href=\"go-lesson.php?id=" .$row['id']. "\">".$row['link']."</a></td>
+        <td><a href=\"go-lesson.php?id=" .$row['id']. "\">".$row['title']."</a></td>
     </tr> "; 
                            ?>
                         <?php     }

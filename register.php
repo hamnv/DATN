@@ -130,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
     <div class="headerbar">
-    <a href="index.php"><img src="assets/Logo.png" alt="Logo" /> </a>
+        <a href="index.php"><img src="assets/Logo.png" alt="Logo" /> </a>
     </div>
     <div class="register">
         <div class="wrapper">

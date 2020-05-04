@@ -1,13 +1,17 @@
 <?php
 session_start();
 require_once "../config/config.php";
- 
+if (!isset($_SESSION['admin'])) {
+    header("Location: admin-login.php");
+    exit;
+}
 // Define variables and initialize with empty values
-$account = $_POST['account'];
-$password = $_POST['password'];
+
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $account = $_POST['account'];
+    $password = $_POST['password'];
         $sql = "INSERT INTO admin (account, password) VALUES (?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
