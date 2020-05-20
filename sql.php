@@ -4,4 +4,3 @@
 
 // Include config file
 require_once "config/config.php";
-?>

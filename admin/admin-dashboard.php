@@ -31,8 +31,9 @@ if (isset($_SESSION['admin'])) {
             <li> <a href="research.php"><i class="fas fa-comment"></i>Quản Lý Diễn Đàn</a></li>
             <li> <a href="admin-question.php"><i class="fas fa-question-circle"></i>Quản Lý Câu Hỏi</a></li>
             <?php
-if (isset($_SESSION['admin']))
+if (isset($_SESSION['admin'])) {
     echo "<li> <a href=\"logout.php\"> <i class=\"fas fa-sign-out-alt\"></i><b> Đăng Xuất </b></a></li>";
+}
 ?>
         </ul>
     </div>

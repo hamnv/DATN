@@ -52,18 +52,18 @@ print $a;?>">
         </div>
         <div class="dashboard">
         <span> Các bài học đã xem</span><br/>
-        <?php 
+        <?php
         $sql = "SELECT DISTINCT lesson.title, lesson_progess.lesson_id
         FROM lesson, lesson_progess 
         WHERE lesson_progess.lesson_id=lesson.id AND lesson_progess.user_id=$user_id";
         $result = mysqli_query($link, $sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<button class=\"btn-lesson col-md-2\">".$row['title']."</button>";
-        ?>
-        <?php }
-        mysqli_close($link); 
-            }?>
+                echo "<button class=\"btn-lesson col-md-2\">".$row['title']."</button>"; ?>
+        <?php
+            }
+            mysqli_close($link);
+        }?>
         </div>
     </div>
 

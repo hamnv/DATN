@@ -5,7 +5,7 @@ require_once "../config/config.php";
 if (isset($_SESSION['admin'])) {
     //Chu de
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-     if(isset($_POST['question'])&&isset($_POST['lesson'])&&isset($_POST['ans4'])) {
+        if (isset($_POST['question'])&&isset($_POST['lesson'])&&isset($_POST['ans4'])) {
             $title = $_POST['question'];
             $lesson = $_POST['lesson'];
             $ans1 = $_POST['ans1'];
@@ -17,7 +17,7 @@ if (isset($_SESSION['admin'])) {
 
             if ($stmt = mysqli_prepare($link, $sql)) {
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "sssssss", $param_title, $param_ans1, $param_ans2,$param_ans3, $param_ans4, $param_correct, $param_lesson);
+                mysqli_stmt_bind_param($stmt, "sssssss", $param_title, $param_ans1, $param_ans2, $param_ans3, $param_ans4, $param_correct, $param_lesson);
 
                 // Set parameters
                 $param_title = $_POST['question'];
@@ -29,20 +29,20 @@ if (isset($_SESSION['admin'])) {
                 $param_correct = $_POST['correct'];
                 // Attempt to execute the prepared statement
                 if (mysqli_stmt_execute($stmt)) {
-                   header("location: admin-question.php");
-                   echo "thanh cong";
+                    header("location: admin-question.php");
+                    echo "thanh cong";
                 } else {
                     echo "Có lỗi xảy ra.";
                 }
                 // Close statement
                 mysqli_stmt_close($stmt);
             }
+        } else {
+            header("Location: admin-dashboard.php");
         }
-        else header("Location: admin-dashboard.php"); 
         // ket thuc ket noi
         mysqli_close($link);
     }
-
 } else {
     header("Location: ../stop.php");
 }

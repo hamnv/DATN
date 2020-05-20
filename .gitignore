@@ -37,3 +37,6 @@ nbproject/*
 *.log
 *.csv
 *.tsv
+
+# php-cs-fixer
+.php_cs.cache

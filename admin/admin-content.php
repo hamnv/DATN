@@ -82,7 +82,8 @@ if (mysqli_num_rows($result) > 0) {
                               ".$row['name']."
                              </label>
                            </div> "; ?>
-                                <?php     }
+                                <?php
+    }
 } else {
     echo "";
 }
@@ -149,9 +150,9 @@ if (mysqli_num_rows($result2) > 0) {
         <td>".$row['title']."</td>
         <td>".$row['name']."</td>
         <td>".$row['created_at']."</td>
-    </tr> "; 
-                           ?>
-                <?php     }
+    </tr> "; ?>
+                <?php
+    }
 } else {
     echo "";
 }

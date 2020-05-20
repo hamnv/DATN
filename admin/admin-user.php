@@ -92,9 +92,9 @@ if (mysqli_num_rows($result2) > 0) {
         <td>".$row['user_email']."</td>
         <td> 
         <button onclick=\"deleteUser(".$row['id'].")\" class=\"btn btn-danger\" > XOÁ </button></td>
-    </tr> "; 
-                           ?>
-                <?php     }
+    </tr> "; ?>
+                <?php
+    }
 } else {
     echo "";
 }

@@ -32,8 +32,9 @@ if (isset($_SESSION['admin'])) {
             <li class="liactive"> <a href="admin-question.php"><i class="fas fa-question-circle"></i>Quản Lý Câu Hỏi</a>
             </li>
             <?php
-if (isset($_SESSION['admin']))
+if (isset($_SESSION['admin'])) {
     echo "<li> <a href=\"logout.php\"> <i class=\"fas fa-sign-out-alt\"></i><b> Đăng Xuất </b></a></li>";
+}
 ?>
         </ul>
     </div>
@@ -121,7 +122,8 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo                " <option type=\"radio\" class=\"form-check-input\" name=\"lesson\" value=\"" .$row['id']. "\">
                               ".$row['title']. "</option>"; ?>
-                                <?php     }
+                                <?php
+    }
 } else {
     echo "";
 }
@@ -164,9 +166,9 @@ if (mysqli_num_rows($result2) > 0) {
         <td>".$row['ans4']."</td>
         <td>".$row['correct_ans']."</td>
         <td>".$row['title']."</td>
-    </tr> "; 
-                           ?>
-                <?php     }
+    </tr> "; ?>
+                <?php
+    }
 } else {
     echo "";
 }

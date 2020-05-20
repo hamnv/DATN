@@ -59,9 +59,9 @@ if (mysqli_num_rows($result2) > 0) {
         <td>".$row['name']."</td>
         <td>".$row['title']."</td>
         <td><a href=\"go-lesson.php?id=" .$row['id']. "\">".$row['title']."</a></td>
-    </tr> "; 
-                           ?>
-                        <?php     }
+    </tr> "; ?>
+                        <?php
+    }
 } else {
     echo "";
 }

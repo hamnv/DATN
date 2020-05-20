@@ -3,11 +3,10 @@
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION['admin'])){
+if (isset($_SESSION['admin'])) {
     header("location: admin/admin_dashboard.php");
     exit;
-}
-else {
+} else {
     header("location: admin/admin_login.php");
     exit;
 }
@@ -20,28 +19,28 @@ $user_email = $password = "";
 $user_email_err = $password_err = "";
  
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
     // Check if user_email is empty
-    if(empty(trim($_POST["user_email"]))){
+    if (empty(trim($_POST["user_email"]))) {
         $user_email_err = "Xin hãy nhập email.";
-    } else{
+    } else {
         $user_email = trim($_POST["user_email"]);
     }
     
     // Check if password is empty
-    if(empty(trim($_POST["password"]))){
+    if (empty(trim($_POST["password"]))) {
         $password_err = "Xin hãy nhập mật khẩu.";
-    } else{
+    } else {
         $password = $_POST["password"];
     }
     
     // Validate credentials
-    if(empty($user_email_err) && empty($password_err)){
+    if (empty($user_email_err) && empty($password_err)) {
         // Prepare a select statement
         $sql = "SELECT user_email, user_password FROM user WHERE user_email = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_user_email);
             
@@ -49,36 +48,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_user_email = $user_email;
             
             // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
+            if (mysqli_stmt_execute($stmt)) {
                 // Store result
                 mysqli_stmt_store_result($stmt);
                 
                 // Check if user_email exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $user_email, $hashed_password);
-                    if(mysqli_stmt_fetch($stmt)){
-                       
-                        
-                        if($hashed_password==md5($password)){
+                    if (mysqli_stmt_fetch($stmt)) {
+                        if ($hashed_password==md5($password)) {
                             // Password is correct, so start a new session
                             session_start();
                             
                             // Store data in session variables
-                            $_SESSION["user"] = $user_email;                            
+                            $_SESSION["user"] = $user_email;
                             
                             // Redirect user to welcome page
                             header("location: index.php");
-                        } else{
+                        } else {
                             // Display an error message if password is not valid
                             $password_err = "Mật khẩu của bạn không chính xác";
                         }
                     }
-                } else{
+                } else {
                     // Display an error message if user_email doesn't exist
                     $user_email_err = "Email không tồn tại!!";
                 }
-            } else{
+            } else {
                 echo "Có lỗi xảy ra, xin vui lòng thử lại sau";
             }
 

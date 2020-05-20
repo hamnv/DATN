@@ -6,24 +6,28 @@ $a = array();
 $i = 1;
 
 $sql = "SELECT * FROM question WHERE lesson_id=$lesson_id";
-$result = mysqli_query($link,$sql);
+$result = mysqli_query($link, $sql);
 $max = mysqli_num_rows($result);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-         $a[$i][0] = $row['question'];
-         $a[$i][1] = $row['ans1'];
-         $a[$i][2] = $row['ans2'];
-         $a[$i][3] = $row['ans3'];
-         $a[$i][4] = $row['ans4'];
-         $a[$i][6] = $row['correct_ans'];
-         $i++;
+        $a[$i][0] = $row['question'];
+        $a[$i][1] = $row['ans1'];
+        $a[$i][2] = $row['ans2'];
+        $a[$i][3] = $row['ans3'];
+        $a[$i][4] = $row['ans4'];
+        $a[$i][6] = $row['correct_ans'];
+        $i++;
     }
 }
 
 $question = $_POST["question"];
 
 if ($_POST["Randon"] == 0) {
-    if ($randomizequestions == "yes") {$randval = mt_rand(1, $max);} else { $randval = 1;}
+    if ($randomizequestions == "yes") {
+        $randval = mt_rand(1, $max);
+    } else {
+        $randval = 1;
+    }
     $randval2 = $randval;
 } else {
     $randval = $_POST["Randon"];
@@ -122,22 +126,20 @@ function Goahead (number){
         $ft_lid = $lesson_id;
         $ft_result = $percentaje;
         // Attempt to execute the prepared statement
-       mysqli_stmt_execute($stmt);
+        mysqli_stmt_execute($stmt);
         // Close statement
         mysqli_stmt_close($stmt);
-    }
-    ?>
+    } ?>
 <TR><TD ALIGN=Center>
 Cám ơn bạn đã thực hiện bài test
-<br/>Tỉ lệ trả lời đúng của bạn là: <?php print $percentaje;?> % <br/>
-<?php if($percentaje > 70) {
-    echo "Phần trả lời của bạn khá tốt. Bạn có thể bỏ qua bài học này đẻ học bài tiếp theo.<br/>";
-    echo "<a class=\"btn btn-primary\" href=\"go-lesson.php?id=" .$lesson_id. "\"> Tiếp tục bài học</a>";
-    echo "<a class=\"btn btn-danger\" href=\"go-lesson.php?id=" .++$lesson_id. "\"> Bài tiếp theo</a>";
-}
-else {
-    echo "<a href=\"go-lesson.php?id=" .$lesson_id. "\"> Tiếp tục bài học</a>";
-}
+<br/>Tỉ lệ trả lời đúng của bạn là: <?php print $percentaje; ?> % <br/>
+<?php if ($percentaje > 70) {
+        echo "Phần trả lời của bạn khá tốt. Bạn có thể bỏ qua bài học này đẻ học bài tiếp theo.<br/>";
+        echo "<a class=\"btn btn-primary\" href=\"go-lesson.php?id=" .$lesson_id. "\"> Tiếp tục bài học</a>";
+        echo "<a class=\"btn btn-danger\" href=\"go-lesson.php?id=" .++$lesson_id. "\"> Bài tiếp theo</a>";
+    } else {
+        echo "<a href=\"go-lesson.php?id=" .$lesson_id. "\"> Tiếp tục bài học</a>";
+    }
 }?>
 <p><A HREF="index.php">Về Trang Chủ</a>
 

@@ -25,7 +25,7 @@ if (isset($_SESSION['admin'])) {
                 // Close statement
                 mysqli_stmt_close($stmt);
             }
-        } else if (isset($_POST['lname']) && isset($_POST['cate'])) {
+        } elseif (isset($_POST['lname']) && isset($_POST['cate'])) {
             $result = mysqli_query($link, "SELECT id from lesson ORDER BY id DESC");
             $row = mysqli_fetch_assoc($result);
             $foldername = $row['id'] + 1;
@@ -51,7 +51,6 @@ if (isset($_SESSION['admin'])) {
                 mysqli_stmt_close($stmt);
             }
             if (!is_dir($foldername)) {
-
                 mkdir("../lesson/" . $foldername);
                 if ($_FILES["zip_file"]["name"]) {
                     $filename = $_FILES["zip_file"]["name"];
@@ -89,7 +88,6 @@ if (isset($_SESSION['admin'])) {
                 }
             }
             // echo "Folder is successfully uploaded";
-
         } else {
             header("Location: admin-content.php");
         }
@@ -97,7 +95,6 @@ if (isset($_SESSION['admin'])) {
         // ket thuc ket noi
         mysqli_close($link);
     }
-
 } else {
     header("Location: ../stop.php");
 }
